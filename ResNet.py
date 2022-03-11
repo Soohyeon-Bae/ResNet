@@ -397,3 +397,4 @@ if __name__ == "__main__" :
     #                   callbacks=[callbacks])
     #         batches+=1
     #         if batches >= len(x_train)/BATCH_SIZE : break
+    
