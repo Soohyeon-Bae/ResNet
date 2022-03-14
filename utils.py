@@ -28,15 +28,23 @@ from keras import backend as K
 kangmin Park, Lab for Sensor and Modeling, Dept. of Geoinformatics, the Univ. of Seoul.
 This code is utils for DCNN(Deep convolution neural network) backbones, based on Keras(Tensorflow 2.x).
 updated for Semantic segmentation model.
+"""
+"""
+2022.03.
+Adding comments by Soohyeon Bae.
+"""
 
 #RESNET
 def Resblock(input, knum, layer_name, pad="same", verbose=False):
 
     #identity mapping
     identity = input
+    # The dotted shortcuts increase dimensions.
     if verbose :
         identity = MaxPool2D(pool_size=1, strides=2)(identity)
+        # Instantiates an all-zeros variable of the same shape as 'identity'.
         zero_pad = K.zeros_like(identity)
+        # The shortcut still performs identity mapping, with extra zero entries padded for increasing dimensions.
         identity = Concatenate()([identity, zero_pad])
 
     if not verbose :
@@ -53,6 +61,7 @@ def Resblock(input, knum, layer_name, pad="same", verbose=False):
     BN_L2 = BatchNormalization()(Conv_L2)
 
     #shortcut
+    # f(x) + x
     shortcut = Add()([BN_L2, identity])
     shortcut = Activation(activation="relu")(shortcut)
 
