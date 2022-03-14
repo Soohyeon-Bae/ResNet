@@ -97,3 +97,4 @@ def Resblock_bn(input, knum_in, knum_out, layer_name, pad="same", verbose=False)
     Shortcut = Activation(activation="relu")(Shortcut)
 
     return Shortcut
+
